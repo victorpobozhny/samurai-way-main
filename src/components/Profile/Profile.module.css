@@ -1,0 +1,9 @@
+.profile {
+    grid-area: c;
+    background-color: grey;
+}
+
+.main_image {
+    display: flex;
+    justify-content: center;
+}
