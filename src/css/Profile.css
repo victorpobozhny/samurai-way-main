@@ -1,0 +1,13 @@
+.profile {
+    grid-area: c;
+    background-color: grey;
+}
+
+.main-image {
+    display: flex;
+    justify-content: center;
+}
+
+.main-image img {
+    flex-grow: 1;
+}

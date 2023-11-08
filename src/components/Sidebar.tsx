@@ -1,0 +1,12 @@
+import React from 'react'
+import './../css/Sidebar.css'
+
+
+
+const Sidebar = () => {
+    return (
+        <div className={'sidebar'}>Sidebar</div>
+    )
+}
+
+export default Sidebar;
