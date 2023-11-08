@@ -3,11 +3,7 @@
     background-color: grey;
 }
 
-.main-image {
+.main_image {
     display: flex;
     justify-content: center;
-}
-
-.main-image img {
-    flex-grow: 1;
 }
