@@ -1,5 +1,5 @@
 import React from 'react'
-import s from '../css/Sidebar.module.css'
+import s from './Sidebar.module.css'
 
 
 

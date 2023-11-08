@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Profile from "./components/Profile";
-import Footer from "./components/Footer";
-import Sidebar from "./components/Sidebar";
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import MyPosts from "./components/Profile/Profile";
+import Footer from "./components/Footer/Footer";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
-            <Profile/>
+            <MyPosts/>
             <Sidebar/>
             <Footer/>
         </div>

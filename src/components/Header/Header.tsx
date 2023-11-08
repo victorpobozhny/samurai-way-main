@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from './../images/logo.png'
-import s from'../css/Header.module.css'
+import logo from '../../images/logo.png'
+import s from './Header.module.css'
 
 
 
