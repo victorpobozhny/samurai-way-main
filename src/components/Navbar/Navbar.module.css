@@ -2,14 +2,14 @@
     grid-area: n;
     background-color: rgb(130, 142, 150);
     padding: 10px;
-
-
 }
+
 .item {
     padding: 5px 0 0 5px;
     color: white;
 }
-.item a{
+
+.item a {
     text-decoration: none;
     color: wheat;
 }
@@ -17,6 +17,7 @@
 .item a:hover {
     color: whitesmoke;
 }
+
 .item a.active {
     color: darkgreen;
 }

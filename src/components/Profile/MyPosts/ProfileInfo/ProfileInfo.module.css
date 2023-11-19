@@ -1,0 +1,7 @@
+.main_image {
+    display: flex;
+    justify-content: center;
+}
+.descriptionBlock {
+    padding: 10px;
+}
