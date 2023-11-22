@@ -5,6 +5,8 @@ import s from './Post.module.css'
 type PostPropsType = {
     text: string,
     author: string
+    id: number
+    likesCount: number
 }
 
 const Post: FC<PostPropsType> = (props) => {
@@ -14,6 +16,7 @@ const Post: FC<PostPropsType> = (props) => {
                     <span>{props.author}</span></div>
                <span>{props.text}</span>
                 <button>Like</button>
+                <span>{props.likesCount}</span>
             </div>
     )
 }
