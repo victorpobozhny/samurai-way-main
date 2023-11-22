@@ -12,8 +12,8 @@ const postsData = [
 
 const MyPosts = () => {
 
-    const posts = postsData.map(el=> {
-        return  <Post text={el.text} author={el.author} id={el.id} likesCount={el.likesCount}/>
+    const posts = postsData.map(el => {
+        return <Post text={el.text} author={el.author} id={el.id} likesCount={el.likesCount}/>
     })
 
     return (

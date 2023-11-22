@@ -11,13 +11,13 @@ type PostPropsType = {
 
 const Post: FC<PostPropsType> = (props) => {
     return (
-            <div className={s.post}>
-                <div><img src={Audrey} alt={'Logo'}/>
-                    <span>{props.author}</span></div>
-               <span>{props.text}</span>
-                <button>Like</button>
-                <span>{props.likesCount}</span>
-            </div>
+        <div className={s.post}>
+            <div><img src={Audrey} alt={'Logo'}/>
+                <span>{props.author}</span></div>
+            <span>{props.text}</span>
+            <button>Like</button>
+            <span>{props.likesCount}</span>
+        </div>
     )
 }
 

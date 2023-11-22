@@ -14,7 +14,7 @@ export function DialogItem(props: DialogItemPropsType) {
             <NavLink to={path}>{props.name}</NavLink>
         </div>
     )
-}
+} 
 
 type MessagePropsType = {
     message: string
@@ -60,26 +60,21 @@ const messagesData = [
 
 const Dialogs = (props: string) => {
 
-    const dialogs = dialogsData.map(el=> {
-        return <DialogItem name={el.name} id={el.id} />
+    const dialogsElements = dialogsData.map(el => {
+        return <DialogItem name={el.name} id={el.id}/>
     })
 
-    const messages = messagesData.map(el=> {
-        return <Message message={el.message} id={el.id} />
+    const messagesElements = messagesData.map(el => {
+        return <Message message={el.message} id={el.id}/>
     })
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogs}
-                {/*<DialogItem name={"Victor"} id={1}/>*/}
-                {/*<DialogItem name={"Andrew"} id={2}/>*/}
-                {/*<DialogItem name={"Nickolas"} id={3}/>*/}
-                {/*<DialogItem name={"Amanda"} id={4}/>*/}
-                {/*<DialogItem name={"Anastasia"} id={5}/>*/}
+                {dialogsElements}
             </div>
             <div className={s.messages}>
-                {messages}
+                {messagesElements}
             </div>
         </div>
     )
