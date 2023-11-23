@@ -12,19 +12,27 @@ import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 
 type AppPropsType = {
-    messagesData: Array<MessagePropsType>
-    dialogsData: Array<DialogItemPropsType>
-    postsData: Array<PostType>
+    state: AppStateType
+}
+
+type AppStateType = {
+    dialogsPage: {
+        messagesData: Array<MessagePropsType>
+        dialogsData: Array<DialogItemPropsType>
+    }
+    profilePage: {
+        postsData: Array<PostType>
+    }
 }
 
 function App(props: AppPropsType) {
 
     const DialogsComponent = () => {
-        return <Dialogs messagesData={props.messagesData} dialogsData={props.dialogsData}/>
+        return <Dialogs state={props.state.dialogsPage} />
     }
 
     const ProfileComponent = () => {
-        return <Profile postsData={props.postsData}/>
+        return <Profile state={props.state.profilePage}/>
     }
 
     return (
