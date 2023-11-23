@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import Profile from "./components/Profile/Profile";
 import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
@@ -38,7 +38,7 @@ function App(props: AppPropsType) {
     }
 
     return (
-        <BrowserRouter>
+
             <div className={'app-wrapper'}>
                 <Header/>
                 <Navbar/>
@@ -53,7 +53,7 @@ function App(props: AppPropsType) {
                 <Sidebar friends={props.state.friends}/>
                 <Footer/>
             </div>
-        </BrowserRouter>
+
     );
 }
 
