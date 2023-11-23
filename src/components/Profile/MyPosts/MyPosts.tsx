@@ -3,16 +3,20 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 
-const postsData = [
-    {id: 1, text: 'Hello, my name is Audrey Horne, and I\'m glad to see you', author: 'Audrey Horne', likesCount: 10},
-    {id: 2, text: 'How are you?', author: 'Audrey Horne', likesCount: 12},
-    {id: 3, text: 'The weather is good today, isn\'t is?', author: 'Audrey Horne', likesCount: 5},
-]
+type MyPostsPropsType = {
+    postsData: Array<PostType>
+}
+type PostType = {
+    id: number
+    text: string
+    author: string
+    likesCount: number
+}
 
 
-const MyPosts = () => {
+const MyPosts = (props: MyPostsPropsType) => {
 
-    const posts = postsData.map(el => {
+    const posts = props.postsData.map(el => {
         return <Post text={el.text} author={el.author} id={el.id} likesCount={el.likesCount}/>
     })
 
