@@ -2,9 +2,13 @@
     display: flex;
     justify-content: center;
 }
+.main_image img {
+    width: 950px;
+}
 .descriptionBlock {
     padding: 10px;
 }
+
 
 
 
