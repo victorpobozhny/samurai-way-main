@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import Audrey from './../../../../images/AudreyHorn.png'
+import Audrey from '../../../../images/firends/AudreyHorn.png'
 import s from './Post.module.css'
 
 type PostPropsType = {

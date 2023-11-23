@@ -10,6 +10,7 @@ import Profile from "./components/Profile/Profile";
 import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
+import {FriendType} from "./components/Sidebar/Friend/Friend";
 
 type AppPropsType = {
     state: AppStateType
@@ -23,12 +24,13 @@ type AppStateType = {
     profilePage: {
         postsData: Array<PostType>
     }
+    friends: Array<FriendType>
 }
 
 function App(props: AppPropsType) {
 
     const DialogsComponent = () => {
-        return <Dialogs state={props.state.dialogsPage} />
+        return <Dialogs state={props.state.dialogsPage}/>
     }
 
     const ProfileComponent = () => {
@@ -48,7 +50,7 @@ function App(props: AppPropsType) {
                 </div>
 
 
-                <Sidebar/>
+                <Sidebar friends={props.state.friends}/>
                 <Footer/>
             </div>
         </BrowserRouter>
