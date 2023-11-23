@@ -1,3 +1,7 @@
+import AudreyHorn from "./../images/firends/AudreyHorn.png";
+import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
+import Neo from './../images/firends/Neo1.jpg'
+
 export const state = {
     dialogsPage: {
         messagesData: [
@@ -36,5 +40,22 @@ export const state = {
             {id: 2, text: 'How are you?', author: 'Audrey Horne', likesCount: 12},
             {id: 3, text: 'The weather is good today, isn\'t is?', author: 'Audrey Horne', likesCount: 5},
         ]
-    }
+    },
+    friends: [
+        {
+            name: 'Audrey',
+            surname: 'Horne',
+            avatar: AudreyHorn
+        },
+        {
+            name: 'Marty',
+            surname: 'McFly',
+            avatar: MartyMcFly
+        },
+        {
+            name: 'Thomas',
+            surname: 'Anderson',
+            avatar: Neo
+        },
+    ]
 }
