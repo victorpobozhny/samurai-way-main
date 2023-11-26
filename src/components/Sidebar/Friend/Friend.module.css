@@ -1,12 +1,18 @@
 .friend {
     padding-top: 5px;
+    display: flex;
+    justify-content: center;
 }
+.friendLabel {
 
+
+
+}
 .friendAvatar {
-    width: 70px;
+    width: 60px;
     border-radius: 20px;
 }
 
 .friendName {
-    text-align: left;
+
 }

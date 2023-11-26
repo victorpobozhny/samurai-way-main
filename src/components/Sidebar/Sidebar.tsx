@@ -13,7 +13,7 @@ const Sidebar = (props: SidebarPropsType) => {
     })
 
     return (
-        <div className={s.sidebar}>Friends:
+        <div className={s.sidebar}>
             {friendsList}
         </div>
     )
