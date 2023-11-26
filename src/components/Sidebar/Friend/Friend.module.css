@@ -3,16 +3,12 @@
     display: flex;
     justify-content: center;
 }
-.friendLabel {
-
-
-
-}
 .friendAvatar {
     width: 60px;
     border-radius: 20px;
 }
 
 .friendName {
-
+    color: #27005D;
+    text-align: center;
 }

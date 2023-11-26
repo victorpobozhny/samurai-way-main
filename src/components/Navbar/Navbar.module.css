@@ -1,6 +1,6 @@
 .nav {
     grid-area: n;
-    background-color: rgb(130, 142, 150);
+    background-color: #F1EAFF;
     padding: 10px;
 }
 
@@ -11,13 +11,13 @@
 
 .item a {
     text-decoration: none;
-    color: wheat;
+    color: #27005D;
 }
 
 .item a:hover {
-    color: whitesmoke;
+    color: #79155B;
 }
 
 .item a.active {
-    color: darkgreen;
+    color: black;
 }
