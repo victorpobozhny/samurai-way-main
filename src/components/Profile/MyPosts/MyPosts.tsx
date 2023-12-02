@@ -20,9 +20,9 @@ const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement = useRef<HTMLTextAreaElement>(null)
 
     const addPost = () => {
-        if(newPostElement.current!==null) {
+        if (newPostElement.current !== null) {
             console.log(newPostElement.current.value)
-            newPostElement.current.value=''
+            newPostElement.current.value = ''
         }
     }
     return (
