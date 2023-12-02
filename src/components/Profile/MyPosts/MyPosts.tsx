@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {RefObject, useRef} from 'react'
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
@@ -17,16 +17,23 @@ const MyPosts = (props: MyPostsPropsType) => {
     const posts = props.postsData.map(el => {
         return <Post text={el.text} author={el.author} id={el.id} likesCount={el.likesCount}/>
     })
+    const newPostElement = useRef<HTMLTextAreaElement>(null)
 
+    const addPost = () => {
+        if(newPostElement.current!==null) {
+            console.log(newPostElement.current.value)
+            newPostElement.current.value=''
+        }
+    }
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div className={s.newPost}>
                 <div>
-                    <textarea placeholder={'Write something'}/>
+                    <textarea placeholder={'Write something'} ref={newPostElement}/>
                 </div>
                 <div>
-                    <button>new post</button>
+                    <button onClick={addPost}>new post</button>
                 </div>
             </div>
             <div className={s.posts}>
