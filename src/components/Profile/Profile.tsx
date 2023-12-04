@@ -4,15 +4,16 @@ import MyPosts, {PostType} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
+    addPost: (postMessage: string)=>void
     state: {
         postsData: Array<PostType>
     }
 }
 const Profile = (props: ProfilePropsType) => {
-    return (
+       return (
         <div className={s.profile}>
             <ProfileInfo/>
-            <MyPosts postsData={props.state.postsData}/>
+            <MyPosts postsData={props.state.postsData} addPost={props.addPost}/>
         </div>
     )
 }

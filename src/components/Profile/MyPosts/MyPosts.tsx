@@ -1,9 +1,11 @@
 import React, {RefObject, useRef} from 'react'
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {addPost} from "../../../redux/state";
 
 export type MyPostsPropsType = {
-    postsData: Array<PostType>
+    postsData: PostType[]
+    addPost: (postMessage: string)=>void
 }
 export type PostType = {
     id: number
@@ -13,7 +15,7 @@ export type PostType = {
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-
+    console.log(props.postsData)
     const posts = props.postsData.map(el => {
         return <Post text={el.text} author={el.author} id={el.id} likesCount={el.likesCount}/>
     })
@@ -21,10 +23,12 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     const addPost = () => {
         if (newPostElement.current !== null) {
-            console.log(newPostElement.current.value)
+            props.addPost(newPostElement.current.value)
             newPostElement.current.value = ''
         }
+        console.log(props.postsData)
     }
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>

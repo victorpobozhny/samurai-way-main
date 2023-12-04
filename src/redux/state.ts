@@ -59,3 +59,13 @@ export const state = {
         },
     ]
 }
+
+
+export const addPost = (postMessage: string) => {
+   const newPost = {
+       id: state.profilePage.postsData.length+1,
+       text: postMessage,
+       author: 'Audrey Horne', likesCount: 0
+   }
+   state.profilePage.postsData.push(newPost)
+}

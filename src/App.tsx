@@ -11,9 +11,11 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
+import {addPost} from "./redux/state";
 
 type AppPropsType = {
     state: AppStateType
+    addPost: (postMessage: string)=>void
 }
 
 type AppStateType = {
@@ -34,7 +36,7 @@ function App(props: AppPropsType) {
     }
 
     const ProfileComponent = () => {
-        return <Profile state={props.state.profilePage}/>
+        return <Profile state={props.state.profilePage} addPost={props.addPost}/>
     }
 
     return (
