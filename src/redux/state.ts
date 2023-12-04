@@ -1,6 +1,7 @@
 import AudreyHorn from "./../images/firends/AudreyHorn.png";
 import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
 import Neo from './../images/firends/Neo1.jpg'
+import {rerenderEntireTree} from "../render";
 
 export const state = {
     dialogsPage: {
@@ -68,4 +69,5 @@ export const addPost = (postMessage: string) => {
        author: 'Audrey Horne', likesCount: 0
    }
    state.profilePage.postsData.push(newPost)
+    rerenderEntireTree(state)
 }

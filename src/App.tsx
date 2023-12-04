@@ -11,14 +11,13 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
-import {addPost} from "./redux/state";
 
 type AppPropsType = {
     state: AppStateType
     addPost: (postMessage: string)=>void
 }
 
-type AppStateType = {
+export type AppStateType = {
     dialogsPage: {
         messagesData: Array<MessagePropsType>
         dialogsData: Array<DialogItemPropsType>
