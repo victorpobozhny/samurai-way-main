@@ -1,13 +1,18 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem, DialogItemPropsType} from "./DialogItem/DialogItem";
 import {Message, MessagePropsType} from "./Message/Message";
+import {RefObject} from "react";
+import {addMessage} from "../../redux/state";
 
 
 type DialogsPropsType = {
+    addMessage: () => void
+    updateMessage: (text: string) => void
     state: {
         messagesData: Array<MessagePropsType>
         dialogsData: Array<DialogItemPropsType>
+        newMessage: string
     }
 }
 
@@ -21,6 +26,18 @@ const Dialogs = (props: DialogsPropsType) => {
         return <Message message={el.message} id={el.id}/>
     })
 
+
+    let newMessageRef = useRef<HTMLTextAreaElement | null>(null)
+
+    const onSendMessageClickButton = () => {
+        props.addMessage()
+    }
+    const onChangeHandler = () => {
+        if (newMessageRef.current?.value) {
+            props.updateMessage(newMessageRef.current?.value)
+        }
+
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -28,6 +45,15 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
+                <div>
+                    <textarea
+                        ref={newMessageRef}
+                        value={props.state.newMessage}
+                        placeholder={'write'}
+                        onChange={onChangeHandler}
+                    />
+                    <button onClick={onSendMessageClickButton}>Send Message</button>
+                </div>
             </div>
         </div>
     )

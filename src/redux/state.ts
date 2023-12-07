@@ -9,8 +9,9 @@ export let state = {
             {message: 'Hi', id: 1},
             {message: 'Hello, How are you', id: 2},
             {message: 'Yo', id: 3},
-            {message: 'Just do id', id: 4},
+            {message: 'Just do it', id: 4},
         ],
+        newMessage: '',
         dialogsData: [
             {
                 name: 'Victor',
@@ -79,8 +80,19 @@ export const addPost = () => {
     rerenderEntireTree(state)
 }
 
-
 export const updateNewPostText = (inputText: string) => {
     state.profilePage.newPostText = inputText
+    rerenderEntireTree(state)
+}
+
+
+export const addMessage = () => {
+    state.dialogsPage.messagesData.push({message: state.dialogsPage.newMessage, id: state.dialogsPage.messagesData.length+1})
+    state.dialogsPage.newMessage = ''
+    rerenderEntireTree(state)
+}
+
+export const updateMessage = (inputText: string) => {
+    state.dialogsPage.newMessage = inputText
     rerenderEntireTree(state)
 }

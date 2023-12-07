@@ -11,18 +11,21 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
-import {updateNewPostText} from "./redux/state";
+import {addMessage, updateNewPostText} from "./redux/state";
 
 type AppPropsType = {
     state: AppStateType
-    addPost: ()=>void
-    updateNewPostText:(inputText: string)=>void
+    addPost: () => void
+    updateNewPostText: (inputText: string) => void
+    addMessage: () => void
+    updateMessage: (text: string) => void
 }
 
 export type AppStateType = {
     dialogsPage: {
         messagesData: Array<MessagePropsType>
         dialogsData: Array<DialogItemPropsType>
+        newMessage: string
     }
     profilePage: {
         postsData: Array<PostType>
@@ -34,29 +37,37 @@ export type AppStateType = {
 function App(props: AppPropsType) {
 
     const DialogsComponent = () => {
-        return <Dialogs state={props.state.dialogsPage}/>
+        return <Dialogs
+            state={props.state.dialogsPage}
+            addMessage={props.addMessage}
+            updateMessage={props.updateMessage}
+        />
     }
 
     const ProfileComponent = () => {
-        return <Profile state={props.state.profilePage} addPost={props.addPost} updateNewPostText ={props.updateNewPostText}/>
+        return <Profile
+            state={props.state.profilePage}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText}
+        />
     }
 
     return (
 
-            <div className={'app-wrapper'}>
-                <Header/>
-                <Navbar/>
+        <div className={'app-wrapper'}>
+            <Header/>
+            <Navbar/>
 
 
-                <div className={'app-wrapper-content'}>
-                    <Route path='/profile' render={ProfileComponent}/>
-                    <Route path='/dialogs' render={DialogsComponent}/>
-                </div>
-
-
-                <Sidebar friends={props.state.friends}/>
-                <Footer/>
+            <div className={'app-wrapper-content'}>
+                <Route path='/profile' render={ProfileComponent}/>
+                <Route path='/dialogs' render={DialogsComponent}/>
             </div>
+
+
+            <Sidebar friends={props.state.friends}/>
+            <Footer/>
+        </div>
 
     );
 }
