@@ -1,7 +1,12 @@
 import AudreyHorn from "./../images/firends/AudreyHorn.png";
 import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
 import Neo from './../images/firends/Neo1.jpg'
-import {rerenderEntireTree} from "../render";
+import {AppStateType} from "../App";
+
+
+let rerenderEntireTree = (s: AppStateType) => {
+    console.log('state changed')
+}
 
 export let state = {
     dialogsPage: {
@@ -87,7 +92,10 @@ export const updateNewPostText = (inputText: string) => {
 
 
 export const addMessage = () => {
-    state.dialogsPage.messagesData.push({message: state.dialogsPage.newMessage, id: state.dialogsPage.messagesData.length+1})
+    state.dialogsPage.messagesData.push({
+        message: state.dialogsPage.newMessage,
+        id: state.dialogsPage.messagesData.length + 1
+    })
     state.dialogsPage.newMessage = ''
     rerenderEntireTree(state)
 }
@@ -95,4 +103,8 @@ export const addMessage = () => {
 export const updateMessage = (inputText: string) => {
     state.dialogsPage.newMessage = inputText
     rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: AppStateType) => void) => {
+    rerenderEntireTree = observer
 }

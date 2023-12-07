@@ -11,7 +11,7 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
-import {addMessage, updateNewPostText} from "./redux/state";
+
 
 type AppPropsType = {
     state: AppStateType
@@ -35,7 +35,7 @@ export type AppStateType = {
 }
 
 function App(props: AppPropsType) {
-
+    console.log(props.state)
     const DialogsComponent = () => {
         return <Dialogs
             state={props.state.dialogsPage}
