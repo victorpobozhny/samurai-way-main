@@ -2,10 +2,13 @@ import React, {RefObject, useRef} from 'react'
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {addPost} from "../../../redux/state";
+import {MouseEvent} from "react";
 
 export type MyPostsPropsType = {
     postsData: PostType[]
-    addPost: (postMessage: string)=>void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (inputText: string)=>void
 }
 export type PostType = {
     id: number
@@ -23,10 +26,15 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     const addPost = () => {
         if (newPostElement.current !== null) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
+            props.addPost()
+
+
         }
-        console.log(props.postsData)
+    }
+
+    const onPostChange = () => {
+       let text = newPostElement.current!.value
+        props.updateNewPostText(text)
     }
 
     return (
@@ -34,7 +42,8 @@ const MyPosts = (props: MyPostsPropsType) => {
             <h3>My posts</h3>
             <div className={s.newPost}>
                 <div>
-                    <textarea placeholder={'Write something'} ref={newPostElement}/>
+                    <textarea placeholder={'Write something'} ref={newPostElement} value={props.newPostText}
+                              onChange={onPostChange}/>
                 </div>
                 <div>
                     <button onClick={addPost}>new post</button>

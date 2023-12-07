@@ -3,7 +3,7 @@ import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
 import Neo from './../images/firends/Neo1.jpg'
 import {rerenderEntireTree} from "../render";
 
-export const state = {
+export let state = {
     dialogsPage: {
         messagesData: [
             {message: 'Hi', id: 1},
@@ -37,10 +37,16 @@ export const state = {
 
     profilePage: {
         postsData: [
-            {id: 1, text: 'Hello, my name is Audrey Horne, and I\'m glad to see you', author: 'Audrey Horne', likesCount: 10},
+            {
+                id: 1,
+                text: 'Hello, my name is Audrey Horne, and I\'m glad to see you',
+                author: 'Audrey Horne',
+                likesCount: 10
+            },
             {id: 2, text: 'How are you?', author: 'Audrey Horne', likesCount: 12},
             {id: 3, text: 'The weather is good today, isn\'t is?', author: 'Audrey Horne', likesCount: 5},
-        ]
+        ],
+        newPostText: 'it-kamasutra'
     },
     friends: [
         {
@@ -62,12 +68,19 @@ export const state = {
 }
 
 
-export const addPost = (postMessage: string) => {
-   const newPost = {
-       id: state.profilePage.postsData.length+1,
-       text: postMessage,
-       author: 'Audrey Horne', likesCount: 0
-   }
-   state.profilePage.postsData.push(newPost)
+export const addPost = () => {
+    const newPost = {
+        id: state.profilePage.postsData.length + 1,
+        text: state.profilePage.newPostText,
+        author: 'Audrey Horne', likesCount: 0
+    }
+    state.profilePage.postsData.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+
+
+export const updateNewPostText = (inputText: string) => {
+    state.profilePage.newPostText = inputText
     rerenderEntireTree(state)
 }

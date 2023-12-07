@@ -11,10 +11,12 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
+import {updateNewPostText} from "./redux/state";
 
 type AppPropsType = {
     state: AppStateType
-    addPost: (postMessage: string)=>void
+    addPost: ()=>void
+    updateNewPostText:(inputText: string)=>void
 }
 
 export type AppStateType = {
@@ -24,6 +26,7 @@ export type AppStateType = {
     }
     profilePage: {
         postsData: Array<PostType>
+        newPostText: string
     }
     friends: Array<FriendType>
 }
@@ -35,7 +38,7 @@ function App(props: AppPropsType) {
     }
 
     const ProfileComponent = () => {
-        return <Profile state={props.state.profilePage} addPost={props.addPost}/>
+        return <Profile state={props.state.profilePage} addPost={props.addPost} updateNewPostText ={props.updateNewPostText}/>
     }
 
     return (
