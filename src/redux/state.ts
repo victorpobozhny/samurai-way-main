@@ -3,6 +3,12 @@ import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
 import Neo from './../images/firends/Neo1.jpg'
 import {AppStateType} from "../App";
 
+export type StoreMethodsType = 'ADD-POST' | 'UPDATE-NEW-POST-TEXT' | 'ADD-MESSAGE' | 'UPDATE-NEW-MESSAGE-TEXT'
+
+export type ActionType = {
+    type: StoreMethodsType
+    inputText?: string
+}
 
 let store = {
     _state: {
@@ -69,43 +75,44 @@ let store = {
             },
         ]
     },
-    getState () {
+    _callSubscriber(s: AppStateType) {
+
+    },
+    getState() {
         return this._state
     },
-    _callSubscriber(s: AppStateType) {
-        console.log('state changed')
-    },
-    addPost () {
-        const newPost = {
-            id: this._state.profilePage.postsData.length + 1,
-            text: this._state.profilePage.newPostText,
-            author: 'Audrey Horne', likesCount: 0
-        }
-        this._state.profilePage.postsData.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(store._state)
-    },
-    updateNewPostText  (inputText: string)  {
-        this._state.profilePage.newPostText = inputText
-        this._callSubscriber(this._state)
-    },
-    addMessage  () {
-        this._state.dialogsPage.messagesData.push({
-            message: this._state.dialogsPage.newMessage,
-            id: this._state.dialogsPage.messagesData.length + 1
-        })
-        this._state.dialogsPage.newMessage = ''
-        this._callSubscriber(this._state)
-    },
-    updateMessage (inputText: string) {
-        this._state.dialogsPage.newMessage = inputText
-        this._callSubscriber(this._state)
-    },
-    subscribe (observer: (state: AppStateType) => void)  {
+    subscribe(observer: (state: AppStateType) => void) {
         this._callSubscriber = observer
+    },
+
+    dispatch(action: ActionType) {  //type
+        if (action.type == 'ADD-POST') {
+            const newPost = {
+                id: this._state.profilePage.postsData.length + 1,
+                text: this._state.profilePage.newPostText,
+                author: 'Audrey Horne', likesCount: 0
+            }
+            this._state.profilePage.postsData.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(store._state)
+        } else if (action.type == 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.inputText!
+            this._callSubscriber(this._state)
+        } else if (action.type == 'ADD-MESSAGE') {
+            this._state.dialogsPage.messagesData.push({
+                message: this._state.dialogsPage.newMessage,
+                id: this._state.dialogsPage.messagesData.length + 1
+            })
+            this._state.dialogsPage.newMessage = ''
+            this._callSubscriber(this._state)
+        } else if (action.type == 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessage = action.inputText!
+            this._callSubscriber(this._state)
+        }
     }
 }
 export default store;
+console.log(store)
 
 
 // let rerenderEntireTree = () => {

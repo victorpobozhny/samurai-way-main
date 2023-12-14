@@ -11,14 +11,12 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
+import {ActionType} from "./redux/state";
 
 
 export type AppPropsType = {
     state: AppStateType
-    addPost: () => void
-    updateNewPostText: (inputText: string) => void
-    addMessage: () => void
-    updateMessage: (text: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 export type AppStateType = {
@@ -35,20 +33,19 @@ export type AppStateType = {
 }
 
 function App(props: AppPropsType) {
-    console.log(props.state)
+
     const DialogsComponent = () => {
         return <Dialogs
             state={props.state.dialogsPage}
-            addMessage={props.addMessage}
-            updateMessage={props.updateMessage}
+            dispatch={props.dispatch}
         />
     }
 
     const ProfileComponent = () => {
         return <Profile
             state={props.state.profilePage}
-            addPost={props.addPost}
-            updateNewPostText={props.updateNewPostText}
+            dispatch={props.dispatch}
+
         />
     }
 
