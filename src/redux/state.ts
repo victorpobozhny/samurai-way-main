@@ -3,10 +3,12 @@ import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
 import Neo from './../images/firends/Neo1.jpg'
 import {AppStateType} from "../App";
 
-export type StoreMethodsType = 'ADD-POST' | 'UPDATE-NEW-POST-TEXT' | 'ADD-MESSAGE' | 'UPDATE-NEW-MESSAGE-TEXT'
-
+const ADD_POST = "ADD-POST";
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 export type ActionType = {
-    type: StoreMethodsType
+    type: string
     inputText?: string
 }
 
@@ -86,7 +88,7 @@ let store = {
     },
 
     dispatch(action: ActionType) {  //type
-        if (action.type == 'ADD-POST') {
+        if (action.type == ADD_POST) {
             const newPost = {
                 id: this._state.profilePage.postsData.length + 1,
                 text: this._state.profilePage.newPostText,
@@ -95,22 +97,39 @@ let store = {
             this._state.profilePage.postsData.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber(store._state)
-        } else if (action.type == 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type == UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.inputText!
             this._callSubscriber(this._state)
-        } else if (action.type == 'ADD-MESSAGE') {
+        } else if (action.type == ADD_MESSAGE) {
             this._state.dialogsPage.messagesData.push({
                 message: this._state.dialogsPage.newMessage,
                 id: this._state.dialogsPage.messagesData.length + 1
             })
             this._state.dialogsPage.newMessage = ''
             this._callSubscriber(this._state)
-        } else if (action.type == 'UPDATE-NEW-MESSAGE-TEXT') {
+        } else if (action.type == UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessage = action.inputText!
             this._callSubscriber(this._state)
         }
     }
 }
+
+export const addPostActionCreator = () => {
+    const ADD_POST = "ADD-POST";
+    return {type: ADD_POST}
+}
+export const updateNewPostTextActionCreator = (text: string) => {
+    return {type: UPDATE_NEW_POST_TEXT, inputText: text}
+}
+
+export const addMessageCreateAction = () => {
+    return {type: ADD_MESSAGE}
+}
+
+export const updateNewMessageTextCreateAction = (text: string) => {
+    return {type: UPDATE_NEW_MESSAGE_TEXT, inputText: text}
+}
+
 export default store;
 console.log(store)
 
