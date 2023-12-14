@@ -2,8 +2,7 @@ import React, {useRef} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem, DialogItemPropsType} from "./DialogItem/DialogItem";
 import {Message, MessagePropsType} from "./Message/Message";
-import {RefObject} from "react";
-import {addMessage} from "../../redux/state";
+
 
 
 type DialogsPropsType = {

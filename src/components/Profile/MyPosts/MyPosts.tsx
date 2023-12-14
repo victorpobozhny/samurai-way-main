@@ -1,8 +1,6 @@
-import React, {RefObject, useRef} from 'react'
+import React, {useRef} from 'react'
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addPost} from "../../../redux/state";
-import {MouseEvent} from "react";
 
 export type MyPostsPropsType = {
     postsData: PostType[]

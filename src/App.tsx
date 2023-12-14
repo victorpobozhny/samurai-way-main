@@ -13,7 +13,7 @@ import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
 
 
-type AppPropsType = {
+export type AppPropsType = {
     state: AppStateType
     addPost: () => void
     updateNewPostText: (inputText: string) => void
