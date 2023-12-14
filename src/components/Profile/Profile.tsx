@@ -4,7 +4,7 @@ import MyPosts, {PostType} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 import {ActionType} from "../../redux/state";
 
-type ProfilePropsType = {
+export type ProfilePropsType = {
     dispatch: (action: ActionType) => void
     state: {
         postsData: Array<PostType>

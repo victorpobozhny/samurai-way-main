@@ -2,11 +2,9 @@ import AudreyHorn from "./../images/firends/AudreyHorn.png";
 import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
 import Neo from './../images/firends/Neo1.jpg'
 import {AppStateType} from "../App";
+import dialogsReducer from './dialogs-reducer'
+import profileReducer from './profile-reducer'
 
-const ADD_POST = "ADD-POST";
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 export type ActionType = {
     type: string
     inputText?: string
@@ -77,48 +75,25 @@ let store = {
             },
         ]
     },
-    _callSubscriber(s: AppStateType) {
+    _callSubscriber(s: AppStateType) { //функция существует как заглушка, ее просто переназначают через subscribe
 
     },
     getState() {
         return this._state
     },
+    // на строке ниже подписывается наблюдатель типа (state: AppStateType)=> void и назначается в метод _callSubscriber
     subscribe(observer: (state: AppStateType) => void) {
         this._callSubscriber = observer
     },
-
+    // общий метод dispatch в котором инкапсулированы методы по изменению state. они выполнены через
+    // reducers которые принимают нужную часть state и action и возвращают state
     dispatch(action: ActionType) {  //type
-        if (action.type == ADD_POST) {
-            const newPost = {
-                id: this._state.profilePage.postsData.length + 1,
-                text: this._state.profilePage.newPostText,
-                author: 'Audrey Horne', likesCount: 0
-            }
-            this._state.profilePage.postsData.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(store._state)
-        } else if (action.type == UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.inputText!
-            this._callSubscriber(this._state)
-        } else if (action.type == ADD_MESSAGE) {
-            this._state.dialogsPage.messagesData.push({
-                message: this._state.dialogsPage.newMessage,
-                id: this._state.dialogsPage.messagesData.length + 1
-            })
-            this._state.dialogsPage.newMessage = ''
-            this._callSubscriber(this._state)
-        } else if (action.type == UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessage = action.inputText!
-            this._callSubscriber(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(store._state)
     }
 }
-//ActionCreators
-
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, inputText: text})
-export const addMessageCreateAction = () => ({type: ADD_MESSAGE})
-export const updateNewMessageTextCreateAction = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, inputText: text})
+//ActionCreators- функции, который возвращают объект action хранятся в файлах редьюсеров
 
 export default store;
 console.log(store)
