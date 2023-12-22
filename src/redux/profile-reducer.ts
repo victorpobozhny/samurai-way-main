@@ -1,4 +1,4 @@
-import {ActionType} from "./state";
+import {ActionType} from "./store";
 import {PostType} from "../components/Profile/MyPosts/MyPosts";
 
 
@@ -10,7 +10,21 @@ type profileReducer = {
     newPostText: string
 }
 
-const profileReducer = (state: profileReducer, action: ActionType) => {
+let initialState = {
+    postsData: [
+        {
+            id: 1,
+            text: 'Hello, my name is Audrey Horne, and I\'m glad to see you',
+            author: 'Audrey Horne',
+            likesCount: 10
+        },
+        {id: 2, text: 'How are you?', author: 'Audrey Horne', likesCount: 12},
+        {id: 3, text: 'The weather is good today, isn\'t is?', author: 'Audrey Horne', likesCount: 5},
+    ],
+    newPostText: 'it-kamasutra'
+}
+
+const profileReducer = (state: profileReducer = initialState, action: ActionType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {

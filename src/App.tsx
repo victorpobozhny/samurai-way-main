@@ -11,7 +11,7 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {FriendType} from "./components/Sidebar/Friend/Friend";
-import {ActionType} from "./redux/state";
+import {ActionType} from "./redux/store";
 
 
 export type AppPropsType = {
@@ -29,7 +29,6 @@ export type AppStateType = {
         postsData: Array<PostType>
         newPostText: string
     }
-    friends: Array<FriendType>
 }
 
 function App(props: AppPropsType) {
@@ -62,7 +61,8 @@ function App(props: AppPropsType) {
             </div>
 
 
-            <Sidebar friends={props.state.friends}/>
+            {/*<Sidebar friends={props.state.friends}/>*/}
+            <Sidebar />
             <Footer/>
         </div>
 

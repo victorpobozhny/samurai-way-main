@@ -1,6 +1,3 @@
-import AudreyHorn from "./../images/firends/AudreyHorn.png";
-import MartyMcFly from './../images/firends/MartyMcFly1.jpg'
-import Neo from './../images/firends/Neo1.jpg'
 import {AppStateType} from "../App";
 import dialogsReducer from './dialogs-reducer'
 import profileReducer from './profile-reducer'
@@ -56,24 +53,7 @@ let store = {
                 {id: 3, text: 'The weather is good today, isn\'t is?', author: 'Audrey Horne', likesCount: 5},
             ],
             newPostText: 'it-kamasutra'
-        },
-        friends: [
-            {
-                name: 'Audrey',
-                surname: 'Horne',
-                avatar: AudreyHorn
-            },
-            {
-                name: 'Marty',
-                surname: 'McFly',
-                avatar: MartyMcFly
-            },
-            {
-                name: 'Thomas',
-                surname: 'Anderson',
-                avatar: Neo
-            },
-        ]
+        }
     },
     _callSubscriber(s: AppStateType) { //функция существует как заглушка, ее просто переназначают через subscribe
 
@@ -93,7 +73,25 @@ let store = {
         this._callSubscriber(store._state)
     }
 }
-//ActionCreators- функции, который возвращают объект action хранятся в файлах редьюсеров
+//ActionCreators- функции, который возвращают объект action. хранятся в файлах редьюсеров
 
 export default store;
 console.log(store)
+
+// friends: [
+//     {
+//         name: 'Audrey',
+//         surname: 'Horne',
+//         avatar: AudreyHorn
+//     },
+//     {
+//         name: 'Marty',
+//         surname: 'McFly',
+//         avatar: MartyMcFly
+//     },
+//     {
+//         name: 'Thomas',
+//         surname: 'Anderson',
+//         avatar: Neo
+//     },
+// ]
