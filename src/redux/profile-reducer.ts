@@ -32,7 +32,7 @@ const profileReducer = (state: profileReducer = initialState, action: ActionType
                 text: state.newPostText,
                 author: 'Audrey Horne', likesCount: 0
             }
-            state.postsData.push(newPost)
+            state.postsData.unshift(newPost)
             state.newPostText = ''
             break;
         case UPDATE_NEW_POST_TEXT:

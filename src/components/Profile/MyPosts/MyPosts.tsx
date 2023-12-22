@@ -1,13 +1,12 @@
 import React, {useRef} from 'react'
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionType} from "../../../redux/store";
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer'
 
 export type MyPostsPropsType = {
     postsData: PostType[]
-    dispatch: (action: ActionType) => void
     newPostText: string
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 export type PostType = {
     id: number
@@ -24,16 +23,14 @@ const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement = useRef<HTMLTextAreaElement>(null)
 
     const addPost = () => {
-        if (newPostElement.current !== null) {
-            props.dispatch(addPostActionCreator())
-            //props.dispatch({type: "ADD-POST"})
+        if (newPostElement !== null) {
+            props.addPost()
         }
     }
 
     const onPostChange = () => {
         let text = newPostElement.current!.value
-        props.dispatch(updateNewPostTextActionCreator(text))
-        //props.dispatch({type: "UPDATE-NEW-POST-TEXT", inputText: text})
+        props.updateNewPostText(text)
     }
 
     return (

@@ -4,19 +4,25 @@ import {DialogItem, DialogItemPropsType} from "./DialogItem/DialogItem";
 import {Message, MessagePropsType} from "./Message/Message";
 import {ActionType} from "../../redux/store";
 import {addMessageCreateAction, updateNewMessageTextCreateAction} from '../../redux/dialogs-reducer'
+import {StoreType} from "../../App";
 
 type DialogsPropsType = {
-    dispatch: (action: ActionType) => void
-    state: {
-        messagesData: Array<MessagePropsType>
-        dialogsData: Array<DialogItemPropsType>
-        newMessage: string
-    }
+    onChangeHandler: (text: string)=>void
+    sendMessage: ()=>void
+    state: StateType
+}
+
+type StateType = {
+    messagesData: Array<MessagePropsType>
+       dialogsData: Array<DialogItemPropsType>
+      newMessage: string
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElements = props.state.dialogsData.map(el => {
+
+
+    const dialogsElements =  props.state.dialogsData.map(el => {
         return <DialogItem name={el.name} id={el.id}/>
     })
 
@@ -27,11 +33,11 @@ const Dialogs = (props: DialogsPropsType) => {
     let newMessageRef = useRef<HTMLTextAreaElement | null>(null)
 
     const onSendMessageClickButton = () => {
-        props.dispatch(addMessageCreateAction())
+        props.sendMessage()
     }
     const onChangeHandler = () => {
         if (newMessageRef.current?.value) {
-            props.dispatch(updateNewMessageTextCreateAction(newMessageRef.current?.value))
+            props.onChangeHandler(newMessageRef.current.value)
         }
     }
     return (
