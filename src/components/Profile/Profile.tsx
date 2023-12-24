@@ -16,18 +16,18 @@ import {AppPropsType, StoreType} from "../../App";
 //         newPostText: string
 //     }
 // }
-type ProfileProps ={
-    store: StoreType
-}
+// type ProfileProps ={
+//     store: StoreType
+// }
 
-const Profile = (props: ProfileProps) => {
+const Profile = () => {
 
 
     return (
         <div className={s.profile}>
             <ProfileInfo/>
             <MyPostsContainer
-                store={props.store}
+                // store={props.store}
 
                 // postsData={props.state.postsData}
                 // dispatch={props.dispatch}

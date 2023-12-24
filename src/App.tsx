@@ -39,11 +39,11 @@ export type AppStateType = {
     }
 }
 
-function App(props: AppPropsType) {
+function App() {
 
     const DialogsComponent = () => {
         return <DialogsContainer
-            store={props.store}
+
             // state={props.state.dialogsPage}
             // dispatch={props.dispatch}
         />
@@ -51,7 +51,7 @@ function App(props: AppPropsType) {
 
     const ProfileComponent = () => {
         return <Profile
-            store={props.store}
+
             // state={props.state.profilePage}
             // dispatch={props.dispatch}
 
