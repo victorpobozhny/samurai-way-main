@@ -2,27 +2,22 @@ import React, {useRef} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem, DialogItemPropsType} from "./DialogItem/DialogItem";
 import {Message, MessagePropsType} from "./Message/Message";
-import {ActionType} from "../../redux/store";
-import {addMessageCreateAction, updateNewMessageTextCreateAction} from '../../redux/dialogs-reducer'
-import {StoreType} from "../../App";
 
 type DialogsPropsType = {
-    onChangeHandler: (text: string)=>void
-    sendMessage: ()=>void
+    onChangeHandler: (text: string) => void
+    sendMessage: () => void
     state: StateType
 }
 
 type StateType = {
     messagesData: Array<MessagePropsType>
-       dialogsData: Array<DialogItemPropsType>
-      newMessage: string
+    dialogsData: Array<DialogItemPropsType>
+    newMessage: string
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-
-
-    const dialogsElements =  props.state.dialogsData.map(el => {
+    const dialogsElements = props.state.dialogsData.map(el => {
         return <DialogItem name={el.name} id={el.id}/>
     })
 

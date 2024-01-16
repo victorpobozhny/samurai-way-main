@@ -4,15 +4,11 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from 'react-router-dom'
 import Profile from "./components/Profile/Profile";
 import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
-import {FriendType} from "./components/Sidebar/Friend/Friend";
-
-import store from "./redux/redux-store";
 import {EmptyObject, Store} from "redux";
 import dialogsReducer from "./redux/dialogs-reducer";
 import profileReducer from "./redux/profile-reducer";
@@ -42,20 +38,11 @@ export type AppStateType = {
 function App() {
 
     const DialogsComponent = () => {
-        return <DialogsContainer
-
-            // state={props.state.dialogsPage}
-            // dispatch={props.dispatch}
-        />
+        return <DialogsContainer/>
     }
 
     const ProfileComponent = () => {
-        return <Profile
-
-            // state={props.state.profilePage}
-            // dispatch={props.dispatch}
-
-        />
+        return <Profile/>
     }
 
     return (
@@ -69,10 +56,7 @@ function App() {
                 <Route path='/profile' render={ProfileComponent}/>
                 <Route path='/dialogs' render={DialogsComponent}/>
             </div>
-
-
-            {/*<Sidebar friends={props.state.friends}/>*/}
-            <Sidebar />
+            <Sidebar/>
             <Footer/>
         </div>
 

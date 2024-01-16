@@ -76,22 +76,3 @@ let store = {
 //ActionCreators- функции, который возвращают объект action. хранятся в файлах редьюсеров
 
 export default store;
-console.log(store)
-
-// friends: [
-//     {
-//         name: 'Audrey',
-//         surname: 'Horne',
-//         avatar: AudreyHorn
-//     },
-//     {
-//         name: 'Marty',
-//         surname: 'McFly',
-//         avatar: MartyMcFly
-//     },
-//     {
-//         name: 'Thomas',
-//         surname: 'Anderson',
-//         avatar: Neo
-//     },
-// ]

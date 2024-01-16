@@ -11,11 +11,7 @@ export const rerenderEntireTree = (state: AppStateType) => {
         <BrowserRouter>
             <StoreContext.Provider value={store}>
 
-                <App
-                    // store={store}
-                    // state={state}
-                    // dispatch={store.dispatch.bind(store)}
-                />
+                <App/>
             </StoreContext.Provider>
 
         </BrowserRouter>, document.getElementById('root')
@@ -23,9 +19,10 @@ export const rerenderEntireTree = (state: AppStateType) => {
 }
 
 rerenderEntireTree(store.getState())
-store.subscribe(()=> {
-    let state = store.getState()
-    rerenderEntireTree(state)}
+store.subscribe(() => {
+        let state = store.getState()
+        rerenderEntireTree(state)
+    }
 )
 
 

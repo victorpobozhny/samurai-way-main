@@ -2,7 +2,6 @@ import s from './ProfileInfo.module.css'
 import React from "react";
 import mainImg from "../../../../images/main1.jpg";
 
-
 export function ProfileInfo() {
     return (
         <div className={s.profileInfo}>

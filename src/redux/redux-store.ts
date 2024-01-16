@@ -4,7 +4,7 @@ import profileReducer from "./profile-reducer";
 
 
 
-let reducers = combineReducers({    //объект с редюсерами. нужно воспринимать его как
+let reducers = combineReducers({    //объект с редюсерами. нужно воспринимать его как state
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
    });
