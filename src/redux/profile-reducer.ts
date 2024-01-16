@@ -1,9 +1,10 @@
-import {ActionType} from "./store";
+
 import {PostType} from "../components/Profile/MyPosts/MyPosts";
 
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+type AddPostACType = ReturnType<typeof addPostAC>
+type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
+export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType
 
 type profileReducer = {
     postsData: Array<PostType>
@@ -24,9 +25,9 @@ let initialState = {
     newPostText: 'it-kamasutra'
 }
 
-const profileReducer = (state: profileReducer = initialState, action: ActionType) => {
+const profileReducer = (state: profileReducer = initialState, action: ProfileActionsType) => {
     switch (action.type) {
-        case ADD_POST:
+        case "ADD-POST":
             const newPost = {
                 id: state.postsData.length + 1,
                 text: state.newPostText,
@@ -35,7 +36,7 @@ const profileReducer = (state: profileReducer = initialState, action: ActionType
             state.postsData.unshift(newPost)
             state.newPostText = ''
             break;
-        case UPDATE_NEW_POST_TEXT:
+        case "UPDATE-NEW-POST-TEXT":
             state.newPostText = action.inputText!
             break;
         default:
@@ -45,7 +46,16 @@ const profileReducer = (state: profileReducer = initialState, action: ActionType
 }
 
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, inputText: text})
+export const addPostAC = () => {
+    return {
+        type: "ADD-POST"
+    } as const
+}
+export const updateNewPostTextAC = (text: string) => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        inputText: text
+    } as const
+}
 
 export default profileReducer;

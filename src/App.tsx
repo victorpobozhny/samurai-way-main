@@ -10,9 +10,9 @@ import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
 import {PostType} from "./components/Profile/MyPosts/MyPosts";
 import {EmptyObject, Store} from "redux";
-import dialogsReducer from "./redux/dialogs-reducer";
+import dialogsReducer, {ActionType} from "./redux/dialogs-reducer";
 import profileReducer from "./redux/profile-reducer";
-import {ActionType} from "./redux/store";
+
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export type StoreType = Store<EmptyObject & { dialogsPage: dialogsReducer; profilePage: profileReducer; }, ActionType>;

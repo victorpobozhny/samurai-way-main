@@ -1,5 +1,5 @@
 import React from 'react'
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer'
+import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer'
 import MyPosts from "./MyPosts";
 import StoreContext from '../../../StoreContext';
 
@@ -14,11 +14,11 @@ const MyPostsContainer = () => {
         <StoreContext.Consumer>
             {(store) => {
                 const addPost = () => {
-                    store!.dispatch(addPostActionCreator())
+                    store!.dispatch(addPostAC())
                 }
 
                 const updateNewPostText = (text: string) => {
-                    store!.dispatch(updateNewPostTextActionCreator(text))
+                    store!.dispatch(updateNewPostTextAC(text))
                 }
 
                 return <MyPosts

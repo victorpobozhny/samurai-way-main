@@ -1,5 +1,5 @@
 import React from 'react'
-import {addMessageCreateAction, updateNewMessageTextCreateAction} from '../../redux/dialogs-reducer'
+import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer'
 import Dialogs from "./Dialogs";
 import StoreContext from '../../StoreContext';
 
@@ -9,10 +9,10 @@ const DialogsContainer = () => {
         <StoreContext.Consumer>
             {(store) => {
                 const sendMessage = () => {
-                    store!.dispatch(addMessageCreateAction())
+                    store!.dispatch(addMessageAC())
                 }
                 const onChangeHandler = (text: string) => {
-                    store!.dispatch(updateNewMessageTextCreateAction(text))
+                    store!.dispatch(updateNewMessageTextAC(text))
                 }
                 return (
                     <Dialogs state={store!.getState().dialogsPage}
