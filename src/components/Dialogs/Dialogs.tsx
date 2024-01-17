@@ -6,7 +6,7 @@ import {Message, MessagePropsType} from "./Message/Message";
 type DialogsPropsType = {
     onChangeHandler: (text: string) => void
     sendMessage: () => void
-    state: StateType
+    dialogsPage: StateType
 }
 
 type StateType = {
@@ -17,11 +17,11 @@ type StateType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElements = props.state.dialogsData.map(el => {
+    const dialogsElements = props.dialogsPage.dialogsData.map(el => {
         return <DialogItem name={el.name} id={el.id}/>
     })
 
-    const messagesElements = props.state.messagesData.map(el => {
+    const messagesElements = props.dialogsPage.messagesData.map(el => {
         return <Message message={el.message} id={el.id}/>
     })
 
@@ -45,7 +45,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 <div>
                     <textarea
                         ref={newMessageRef}
-                        value={props.state.newMessage}
+                        value={props.dialogsPage.newMessage}
                         placeholder={'write'}
                         onChange={onChangeHandler}
                     />
