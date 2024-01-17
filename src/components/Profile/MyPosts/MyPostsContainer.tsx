@@ -4,12 +4,11 @@ import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../App";
 import store from "../../../redux/redux-store";
-
 //задача контейнерной компоненты - быть оберткой вокруг презентационной компоненты и общаться с redux и store
 // то есть презентационная компонента - просто рисует и вызыввает колбэки, иногда передавая наверх что-то по мелочи
 //и понятия не имеет ни о чем другом
 // все пропсы должны идти через нее, в обход нельзя
-
+// state доступен благодаря тому, что обертка компоненты App получает store, который делает для нас доступным state с помощью store.getState()
 const mapStateToProps = (state: AppStateType) => {
     return {
         postsData: state.profilePage.postsData,
@@ -20,12 +19,11 @@ const mapStateToProps = (state: AppStateType) => {
 const mapDispatchToProps = () => {
     return {
         updateNewPostText: (text: string) => {
-            store!.dispatch(updateNewPostTextAC(text))
+            store.dispatch(updateNewPostTextAC(text))
         },
         addPost: () => {
-            store!.dispatch(addPostAC())
+            store.dispatch(addPostAC())
         }
-
     }
 }
 
