@@ -1,4 +1,3 @@
-
 import {PostType} from "../components/Profile/MyPosts/MyPosts";
 
 
@@ -33,16 +32,13 @@ const profileReducer = (state: profileReducer = initialState, action: ProfileAct
                 text: state.newPostText,
                 author: 'Audrey Horne', likesCount: 0
             }
-            state.postsData.unshift(newPost)
-            state.newPostText = ''
-            break;
+            return {...state, postsData: [newPost, ...state.postsData], newPostText: ''}
+
         case "UPDATE-NEW-POST-TEXT":
-            state.newPostText = action.inputText!
-            break;
+            return {...state, newPostText: action.inputText}
         default:
             return state
     }
-    return state
 }
 
 

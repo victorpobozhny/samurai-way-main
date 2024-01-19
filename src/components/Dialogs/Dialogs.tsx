@@ -18,11 +18,11 @@ type StateType = {
 const Dialogs = (props: DialogsPropsType) => {
 
     const dialogsElements = props.dialogsPage.dialogsData.map(el => {
-        return <DialogItem name={el.name} id={el.id}/>
+        return <DialogItem key={el.id} name={el.name} id={el.id}/>
     })
 
     const messagesElements = props.dialogsPage.messagesData.map(el => {
-        return <Message message={el.message} id={el.id}/>
+        return <Message key={el.id} message={el.message} id={el.id}/>
     })
 
     let newMessageRef = useRef<HTMLTextAreaElement | null>(null)
