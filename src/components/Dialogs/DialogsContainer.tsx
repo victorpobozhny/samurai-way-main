@@ -2,11 +2,11 @@ import React from 'react'
 import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer'
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import store from "../../redux/redux-store";
-import {AppStateType} from "../../App";
+import store, {AppRootStateType} from "../../redux/redux-store";
+
 
 // функции для настройки connect
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppRootStateType) => {
     return {
         dialogsPage: state.dialogsPage
     }
