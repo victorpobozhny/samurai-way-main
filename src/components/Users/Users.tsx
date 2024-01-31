@@ -1,65 +1,41 @@
 import React from 'react';
 import {UserType} from "../../redux/users-reducer";
 import styles from './users.module.css'
+import axios from "axios";
+import defaultUserPhoto from './../../images/defaultUser.avif'
 
 type UsersPropsType = {
     usersPage: UserType[]
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
 }
 
 export const Users = (props: UsersPropsType) => {
     if(props.usersPage.length==0){
-        props.setUsers([
-            {
-                id: '1',
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=> {
+            console.log(response)
+            props.setUsers(response.data.items)
+        })
 
-                fullName: 'Dmitry',
-                photoURL: 'https://img07.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/e/e6/ee61603b83298547cb43d2c70c8af339.jpg',
-                status: `I'm a boss`,
-                followed: false,
-                location: {
-                    country: 'Belarus',
-                    city: 'Minsk'
-                }
-            },
-            {
-                id: '2',
-                fullName: 'Nastya',
-                photoURL: 'https://img07.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/e/e6/ee61603b83298547cb43d2c70c8af339.jpg',
-                status: `I'm a Nastya`,
-                followed: false,
-                location: {
-                    country: 'Belarus',
-                    city: 'Grodno'
-                }
-            },
-            {
-                id: '3',
-                fullName: 'Max',
-                photoURL: 'https://img07.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/e/e6/ee61603b83298547cb43d2c70c8af339.jpg',
-                status: `I'm a in Moscow`,
-                followed: true,
-                location: {
-                    country: 'Russia',
-                    city: 'Moscow'
-                }
-            }
-        ])
     }
     return (
         <div>
             {props.usersPage.map(el => {
                 return <div key={el.id}>
                     <div>
-                        <img alt={el.fullName} src={el.photoURL} className={styles.userPhoto}/>
+                        <img
+                            alt={el.name}
+                            src={el.photos.small
+                                ? el.photos.small
+                            : defaultUserPhoto}
+                            className={styles.userPhoto}/>
                     </div>
                     <div>
-                        <div>{el.fullName}</div>
+                        <div>{el.name}</div>
                         <div>
-                            <span>{el.location.country}</span>
-                            <span>{el.location.city}</span>
+                            <span>{'el.location.country'}</span>
+                            <span>{'el.location.city'}</span>
                         </div>
                         <div>{el.status}</div>
                         <div>{el.followed ? `You are following` : `You aren't following`}</div>

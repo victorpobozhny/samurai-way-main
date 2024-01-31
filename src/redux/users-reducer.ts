@@ -3,57 +3,22 @@ type UnfollowACType = ReturnType<typeof unfollowAC>
 type SetUsersACType = ReturnType<typeof setUsersAC>
 export type UsersActionsType = FollowACType | UnfollowACType | SetUsersACType
 export type UserType = {
-    id: string
-    photoURL: string
-    fullName: string
-    status: string
     followed: boolean
-    location: {
-        country: string
-        city: string
+    id: number
+    name: string
+    photos: {
+        small: string | null
+        big: string | null
     }
+    status: string | null
+    uniqueUrlName: string | null
 }
 type UsersReducerState = {
     users: UserType[]
 }
 
 let initialState = {
-    users: [
-        {
-            id: '1',
-
-            fullName: 'Dmitry',
-            photoURL: 'https://img07.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/e/e6/ee61603b83298547cb43d2c70c8af339.jpg',
-            status: `I'm a boss`,
-            followed: false,
-            location: {
-                country: 'Belarus',
-                city: 'Minsk'
-            }
-        },
-        {
-            id: '2',
-            fullName: 'Nastya',
-            photoURL: 'https://img07.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/e/e6/ee61603b83298547cb43d2c70c8af339.jpg',
-            status: `I'm a Nastya`,
-            followed: false,
-            location: {
-                country: 'Belarus',
-                city: 'Grodno'
-            }
-        },
-        {
-            id: '3',
-            fullName: 'Max',
-            photoURL: 'https://img07.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/e/e6/ee61603b83298547cb43d2c70c8af339.jpg',
-            status: `I'm a in Moscow`,
-            followed: true,
-            location: {
-                country: 'Russia',
-                city: 'Moscow'
-            }
-        }
-    ]
+    users: []
 }
 
 const usersReducer = (state: UsersReducerState = initialState, action: UsersActionsType) => {
@@ -70,7 +35,7 @@ const usersReducer = (state: UsersReducerState = initialState, action: UsersActi
             }
         case "SET-USERS":
             return {
-                ...state,
+
                 users: [...state.users, ...action.users]
             }
         default:
@@ -79,13 +44,13 @@ const usersReducer = (state: UsersReducerState = initialState, action: UsersActi
 }
 
 
-export const followAC = (userId: string) => {
+export const followAC = (userId: number) => {
     return {
         type: 'FOLLOW',
         userId
     } as const
 }
-export const unfollowAC = (userId: string) => {
+export const unfollowAC = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         userId
