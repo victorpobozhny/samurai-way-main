@@ -1,59 +1,65 @@
-import React from 'react';
-import {UserType} from "../../redux/users-reducer";
+import React from "react";
 import styles from './users.module.css'
 import axios from "axios";
 import defaultUserPhoto from './../../images/defaultUser.avif'
 
-type UsersPropsType = {
+import {UserType} from "../../redux/users-reducer";
+
+export type UsersPropsType = {
     usersPage: UserType[]
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
 }
 
-export const Users = (props: UsersPropsType) => {
-    function getUsers () {if(props.usersPage.length==0){
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=> {
-            console.log(response)
-            props.setUsers(response.data.items)
-        })
+class Users extends React.Component<UsersPropsType, {}> {
 
-    }}
-    return (
+    constructor(props: UsersPropsType) {
+        super(props);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                    console.log(response)
+                    this.props.setUsers(response.data.items)
+                }
+            )
+    }
 
-        <div>
-            {props.usersPage.length
-                ? ''
-                :<button onClick={getUsers}>Get Users</button>}
-            {props.usersPage.map(el => {
-                return <div key={el.id}>
-                    <div>
-                        <img
-                            alt={el.name}
-                            src={el.photos.small
-                                ? el.photos.small
-                            : defaultUserPhoto}
-                            className={styles.userPhoto}/>
-                    </div>
-                    <div>
-                        <div>{el.name}</div>
+
+    render() {
+        return (
+            <div>
+                {this.props.usersPage.map(el => {
+                    return <div key={el.id}>
                         <div>
-                            <span>{'el.location.country'}</span>
-                            <span>{'el.location.city'}</span>
+                            <img
+                                alt={el.name}
+                                src={el.photos.small
+                                    ? el.photos.small
+                                    : defaultUserPhoto}
+                                className={styles.userPhoto}/>
                         </div>
-                        <div>{el.status}</div>
-                        <div>{el.followed ? `You are following` : `You aren't following`}</div>
-                        {el.followed
-                            ? <button onClick={() => {
-                                props.unfollow(el.id)
-                            }}>Unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(el.id)
-                            }}>Follow</button>
-                        }
+                        <div>
+                            <div>{el.name}</div>
+                            <div>
+                                <span>{'el.location.country'}</span>
+                                <span>{'el.location.city'}</span>
+                            </div>
+                            <div>{el.status}</div>
+                            <div>{el.followed ? `You are following` : `You aren't following`}</div>
+                            {el.followed
+                                ? <button onClick={() => {
+                                    this.props.unfollow(el.id)
+                                }}>Unfollow</button>
+                                : <button onClick={() => {
+                                    this.props.follow(el.id)
+                                }}>Follow</button>
+                            }
+                        </div>
                     </div>
-                </div>
-            })}
-        </div>
-    );
-};
+                })}
+            </div>
+        )
+    }
+}
+
+export default Users
