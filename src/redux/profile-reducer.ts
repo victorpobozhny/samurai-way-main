@@ -5,7 +5,7 @@ type AddPostACType = ReturnType<typeof addPostAC>
 type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
 export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType
 
-type profileReducer = {
+type ProfileReducer = {
     postsData: Array<PostType>
     newPostText: string
 }
@@ -24,7 +24,7 @@ let initialState = {
     newPostText: 'it-kamasutra'
 }
 
-const profileReducer = (state: profileReducer = initialState, action: ProfileActionsType) => {
+const profileReducer = (state: ProfileReducer = initialState, action: ProfileActionsType): ProfileReducer => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {

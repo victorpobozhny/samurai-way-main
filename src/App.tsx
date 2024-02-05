@@ -42,7 +42,7 @@ function App() {
     }
 
     const UsersComponent = () => {
-        return <UsersContainer/>
+        return <UsersContainer />
     }
 
     return (

@@ -3,3 +3,10 @@
     height: 50px;
     border-radius: 15px;
 }
+
+.selectedPage {
+    font-weight: bold;
+}
+.page {
+    cursor: pointer;
+}

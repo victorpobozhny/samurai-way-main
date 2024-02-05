@@ -2,7 +2,7 @@ import React from 'react'
 import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer'
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import store, {AppRootStateType, DispatchType} from "../../../redux/redux-store";
+import store, {AppRootStateType} from "../../../redux/redux-store";
 //задача контейнерной компоненты - быть оберткой вокруг презентационной компоненты и общаться с redux и store
 // то есть презентационная компонента - просто рисует и вызыввает колбэки, иногда передавая наверх что-то по мелочи
 //и понятия не имеет ни о чем другом

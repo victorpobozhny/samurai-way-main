@@ -4,7 +4,7 @@ import {ProfileActionsType} from "./profile-reducer";
 
 export type ActionType = DialogsActionsType | ProfileActionsType
 
-type dialogsReducer = {
+type DialogsReducer = {
     messagesData: Array<MessagePropsType>
     dialogsData: Array<DialogItemPropsType>
     newMessage: string
@@ -46,7 +46,7 @@ let initialState = {
     ]
 }
 
-const dialogsReducer = (state: dialogsReducer = initialState, action: DialogsActionsType) => {
+const dialogsReducer = (state: DialogsReducer = initialState, action: DialogsActionsType): DialogsReducer => {
 
     switch (action.type) {
         case 'ADD-MESSAGE':

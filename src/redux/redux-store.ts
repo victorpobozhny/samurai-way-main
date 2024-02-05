@@ -5,10 +5,11 @@ import usersReducer from "./users-reducer";
 
 
 
+
 let reducers = combineReducers({    //объект с редюсерами. нужно воспринимать его как state
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
    });
 
 

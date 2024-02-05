@@ -8,7 +8,9 @@ import store, {AppRootStateType} from "../../redux/redux-store";
 // функции для настройки connect
 let mapStateToProps = (state: AppRootStateType) => {
     return {
-        dialogsPage: state.dialogsPage
+        messagesData: state.dialogsPage.messagesData,
+        dialogsData: state.dialogsPage.dialogsData,
+        newMessage: state.dialogsPage.newMessage
     }
 }
 let mapDispatchToProps = () => {
