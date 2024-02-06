@@ -9,8 +9,20 @@ import {
     unfollowAC,
     UserType
 } from "../../redux/users-reducer";
-import Users from "./Users";
+import axios from "axios";
+import {Users} from "./Users";
 
+export type UsersPropsType = {
+    users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (users: UserType[]) => void
+    changeCurrentPage: (currentPageNum: number) => void
+    setTotalUsersCount: (usersCount: number) => void
+}
 
 const mapStateToProps = (state: AppRootStateType) => {
     return {
@@ -40,7 +52,47 @@ const mapDispatchToProps = () => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
-export default UsersContainer;
+class UsersContainer extends React.Component<UsersPropsType, {}> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                    console.log(response)
+                    this.props.setUsers(response.data.items)
+                    this.props.setTotalUsersCount(response.data.totalCount)
+                }
+            )
+    }
+
+    onPageChanged = (page: number) => {
+        this.props.changeCurrentPage(page)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+            .then(response => {
+                    console.log(response)
+                    this.props.setUsers(response.data.items)
+                    this.props.setTotalUsersCount(response.data.totalCount)
+                }
+            )
+    }
+
+    render() {
+        return (
+            <div>
+                <Users
+                    users={this.props.users}
+                    pageSize={this.props.pageSize}
+                    totalUsersCount={this.props.totalUsersCount}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
+                    onPageChanged={this.onPageChanged}
+                    currentPage={this.props.currentPage}
+                />
+            </div>
+        )
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
 
 
