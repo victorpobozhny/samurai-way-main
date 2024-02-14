@@ -29,7 +29,7 @@ function App() {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route path='/profile' render={ProfileComponent}/>
+                <Route path='/profile/:userId?' render={ProfileComponent}/>
                 <Route path='/dialogs' render={DialogsComponent}/>
                 <Route path='/users' render={UsersComponent}/>
             </div>
