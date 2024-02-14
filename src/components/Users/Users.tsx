@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./users.module.css";
 import defaultUserPhoto from "../../images/defaultUser.avif";
 import {UserType} from "../../redux/users-reducer";
+import {NavLink} from 'react-router-dom'
 
 type UsersPropsType = {
     currentPage: number
@@ -36,12 +37,14 @@ export const Users = (props: UsersPropsType) => {
             {props.users.map(el => {
                 return <div key={el.id}>
                     <div>
-                        <img
-                            alt={el.name}
-                            src={el.photos.small
-                                ? el.photos.small
-                                : defaultUserPhoto}
-                            className={styles.userPhoto}/>
+                        <NavLink to={'profile/' + el.id}>
+                            <img
+                                alt={el.name}
+                                src={el.photos.small
+                                    ? el.photos.small
+                                    : defaultUserPhoto}
+                                className={styles.userPhoto}/>
+                        </NavLink>
                     </div>
                     <div>
                         <div>{el.name}</div>

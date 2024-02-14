@@ -2,11 +2,17 @@ import React from 'react'
 import s from './Profile.module.css'
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "../../redux/profile-reducer";
 
-const Profile = () => {
+
+type ProfileProps = {
+profile: ProfileType
+}
+
+const Profile = (props: ProfileProps) => {
     return (
         <div className={s.profile}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     )

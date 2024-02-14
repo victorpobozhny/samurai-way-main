@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
-import store, {AppRootStateType} from "../../redux/redux-store";
+import {AppRootStateType} from "../../redux/redux-store";
 import {
-    changeCurrentPageAC, fetchingAC,
-    followAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowAC,
+    changeCurrentPage,
+    follow,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
     UserType
 } from "../../redux/users-reducer";
 import axios from "axios";
 import {Users} from "./Users";
-import loading from './../../images/Internet.gif'
 import {Preloader} from "../common/preloader/Preloader";
 
 export type UsersPropsType = {
@@ -35,28 +35,6 @@ const mapStateToProps = (state: AppRootStateType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching
-    }
-}
-const mapDispatchToProps = () => {
-    return {
-        follow: (userId: number) => {
-            store.dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            store.dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: UserType[]) => {
-            store.dispatch(setUsersAC(users))
-        },
-        changeCurrentPage: (currentPageNum: number) => {
-            store.dispatch(changeCurrentPageAC(currentPageNum))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            store.dispatch(setTotalUsersCountAC(totalUsersCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            store.dispatch(fetchingAC(isFetching))
-        }
     }
 }
 
@@ -110,6 +88,13 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    changeCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+})(UsersContainer)
 
 

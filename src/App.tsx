@@ -5,31 +5,10 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {Route} from 'react-router-dom'
-import Profile from "./components/Profile/Profile";
 
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-
-// export type StoreType = Store<EmptyObject & { dialogsPage: dialogsReducer; profilePage: profileReducer; }, ActionType>;
-//
-// export type AppPropsType = {
-//     state: AppStateType
-//     dispatch: (action: ActionType) => void
-//     store: StoreType
-// }
-//
-// export type AppStateType = {
-//     dialogsPage: {
-//         messagesData: Array<MessagePropsType>
-//         dialogsData: Array<DialogItemPropsType>
-//         newMessage: string
-//     }
-//     profilePage: {
-//         postsData: Array<PostType>
-//         newPostText: string
-//     }
-//     usersPage: UserType[]
-// }
+import ProfileContainer from "./components/Profile/MyPosts/ProfileContainer";
 
 function App() {
 
@@ -38,11 +17,11 @@ function App() {
     }
 
     const ProfileComponent = () => {
-        return <Profile/>
+        return <ProfileContainer/>
     }
 
     const UsersComponent = () => {
-        return <UsersContainer />
+        return <UsersContainer/>
     }
 
     return (
