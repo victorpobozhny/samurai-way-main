@@ -3,6 +3,7 @@ import styles from "./users.module.css";
 import defaultUserPhoto from "../../images/defaultUser.avif";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from 'react-router-dom'
+import axios from "axios";
 
 type UsersPropsType = {
     currentPage: number
@@ -54,13 +55,25 @@ export const Users = (props: UsersPropsType) => {
                         </div>
                         <div>{el.status}</div>
                         <div>{el.followed ? `You are following` : `You aren't following`}</div>
-                        {el.followed
+                        {!el.followed
                             ? <button onClick={() => {
-                                props.unfollow(el.id)
-                            }}>Unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(el.id)
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {withCredentials: true})
+                                    .then(res => {
+                                        if(res.data.resultCode==0) {
+                                            props.follow(el.id)
+                                        }
+                                    })
+                                //props.unfollow(el.id)
                             }}>Follow</button>
+                            : <button onClick={() => {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {withCredentials: true})
+                                    .then(res => {
+                                        if(res.data.resultCode==0) {
+                                            props.unfollow(el.id)
+                                        }
+                                    })
+                                //props.unfollow(el.id)
+                            }}>Unfollow</button>
                         }
                     </div>
                 </div>
