@@ -6,7 +6,9 @@
 
 .selectedPage {
     font-weight: bold;
+    padding: 5px;
 }
 .page {
     cursor: pointer;
+    padding: 5px;
 }

@@ -1,3 +1,6 @@
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+
 export type UsersActionsType =
     ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof changeCurrentPage>
@@ -72,6 +75,52 @@ const usersReducer = (state: UsersReducer = initialState, action: UsersActionsTy
         default:
             return state
     }
+}
+
+
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true))
+    dispatch(changeCurrentPage(currentPage))
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            }
+        )
+}
+
+
+export const followUser = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.follow(userId)
+        .then(res => {
+            if (res.data.resultCode == 0) {
+                dispatch(toggleFollowingProgress(false, userId))
+                dispatch(follow(userId))
+            } else {
+                dispatch(toggleFollowingProgress(false, userId))
+            }
+        })
+        .catch(() => {
+            dispatch(toggleFollowingProgress(false, userId))
+        })
+}
+
+
+export const unfollowUser = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.unfollow(userId)
+        .then(res => {
+            if (res.data.resultCode == 0) {
+                dispatch(toggleFollowingProgress(false, userId))
+                dispatch(unfollow(userId))
+            } else {
+                dispatch(toggleFollowingProgress(false, userId))
+            }
+        }).catch(() => {
+        dispatch(toggleFollowingProgress(false, userId))
+    })
 }
 
 export const follow = (userId: number) => {
