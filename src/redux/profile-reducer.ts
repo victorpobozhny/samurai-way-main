@@ -1,9 +1,15 @@
 import {PostType} from "../components/Profile/MyPosts/MyPosts";
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/api";
 
 
 type AddPostACType = ReturnType<typeof addPostAC>
 type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
-export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType | ReturnType<typeof setUserProfile>
+export type ProfileActionsType =
+    AddPostACType
+    | UpdateNewPostTextACType
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof changeProfileStatus>
 
 type ProfileReducer = {
     postsData: Array<PostType>
@@ -33,6 +39,8 @@ const profileReducer = (state: ProfileReducer = initialState, action: ProfileAct
             return {
                 ...state, profile: action.payload.profile
             }
+        case "CHANGE-PROFILE-STATUS":
+            return {...state, profile: {...state.profile, status: action.status}}
 
         case "ADD-POST":
             const newPost = {
@@ -71,24 +79,50 @@ export const setUserProfile = (profile: ProfileType) => {
     } as const
 }
 
+export const changeProfileStatus = (status: string) => {
+    return {
+        type: 'CHANGE-PROFILE-STATUS',
+        status
+    } as const
+}
+
+
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    profileAPI.getProfile(userId)
+        .then(response => {
+                console.log(response)
+                dispatch(setUserProfile(response.data))
+            }
+        )
+}
+
+export const changeStatus = (status: string) => (dispatch: Dispatch) => {
+    profileAPI.changeStatus(status)
+        .then(res => {
+            dispatch(changeProfileStatus(status))
+        })
+}
+
+
 export type ProfileType = {
-    aboutMe: string|null;
+    aboutMe: string | null;
     contacts: RootObjectContacts;
     lookingForAJob: boolean;
     lookingForAJobDescription: string;
     fullName: string;
     userId: number;
     photos: RootObjectPhotos;
+    status: string | null
 }
 export type RootObjectContacts = {
-    facebook: string|null;
-    website: string|null;
-    vk: string|null;
-    twitter: string|null;
-    instagram: string|null;
-    youtube: string|null;
-    github: string|null;
-    mainLink?: string|null;
+    facebook: string | null;
+    website: string | null;
+    vk: string | null;
+    twitter: string | null;
+    instagram: string | null;
+    youtube: string | null;
+    github: string | null;
+    mainLink?: string | null;
 }
 export type RootObjectPhotos = {
     small: string;
