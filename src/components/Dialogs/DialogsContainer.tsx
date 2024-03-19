@@ -3,6 +3,10 @@ import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer'
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import store, {AppRootStateType} from "../../redux/redux-store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 
 // функции для настройки connect
@@ -26,6 +30,6 @@ let mapDispatchToProps = () => {
 }
 
 //создаем контейнерную компоненту
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 
 export default DialogsContainer;

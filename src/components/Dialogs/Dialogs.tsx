@@ -2,15 +2,13 @@ import React, {useRef} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem, DialogItemPropsType} from "./DialogItem/DialogItem";
 import {Message, MessagePropsType} from "./Message/Message";
-import { Redirect } from 'react-router-dom';
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     onChangeHandler: (text: string) => void
     sendMessage: () => void
     messagesData: Array<MessagePropsType>
     dialogsData: Array<DialogItemPropsType>
     newMessage: string
-    isAuth: boolean
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -34,9 +32,6 @@ const Dialogs = (props: DialogsPropsType) => {
         }
     }
 
-    if(!props.isAuth) {
-        return <Redirect to={'/login'}/>
-    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
