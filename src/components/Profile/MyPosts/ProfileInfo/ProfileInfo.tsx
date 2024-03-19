@@ -15,7 +15,6 @@ export function ProfileInfo(props: ProfileInfoProps) {
 
     const onChangeStatus = (status: string) => {
         dispatch(changeStatus(status))
-
     }
 
     if (!props.profile.userId) {
