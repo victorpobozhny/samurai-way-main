@@ -24,6 +24,9 @@ function App() {
     const UsersComponent = () => {
         return <UsersContainer/>
     }
+    const LoginComponent = () => {
+        return <Login/>
+    }
 
     return (
         <div className={'app-wrapper'}>
@@ -33,7 +36,7 @@ function App() {
                 <Route path='/profile/:userId?' render={ProfileComponent}/>
                 <Route path='/dialogs' render={DialogsComponent}/>
                 <Route path='/users' render={UsersComponent}/>
-                <Route path='/login' render={Login}/>
+                <Route path='/login' render={LoginComponent}/>
             </div>
             <Sidebar/>
             <Footer/>
