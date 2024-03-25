@@ -4,9 +4,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import store, {AppRootStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-
-
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
+import {compose} from "redux";
 
 
 // функции для настройки connect
@@ -30,6 +28,5 @@ let mapDispatchToProps = () => {
 }
 
 //создаем контейнерную компоненту
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
-
+const DialogsContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs)
 export default DialogsContainer;
