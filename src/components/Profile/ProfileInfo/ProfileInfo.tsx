@@ -1,12 +1,14 @@
 import s from './ProfileInfo.module.css'
 import React from "react";
-import mainImg from "../../../../images/main1.jpg";
-import {ProfileType} from "../../../../redux/profile-reducer";
-import {Preloader} from "../../../common/preloader/Preloader";
+import mainImg from "../../../images/main1.jpg";
+import {ProfileType} from "../../../redux/profile-reducer";
+import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoProps = {
     profile: ProfileType
+    status: string
+    updateStatus: (status: string) => void
 }
 
 export function ProfileInfo(props: ProfileInfoProps) {
@@ -26,7 +28,7 @@ export function ProfileInfo(props: ProfileInfoProps) {
             <div className={s.descriptionBlock}>
                 <div>Name: {props.profile.fullName}</div>
                 <div><img alt={'small photo'} src={props.profile.photos.small}/></div>
-                <ProfileStatus profile={props.profile}/>
+                <ProfileStatus profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
 
 
                 ava+description
