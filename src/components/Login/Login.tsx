@@ -1,1 +1,1 @@
-import React from 'react';export const Login = () => {    return (        <div>            Login        </div>    );};
+import React from 'react';import {FormDataType, LoginReduxForm} from "./LoginForm";export const Login = () => {    const handleSubmit = (values: FormDataType) => {        console.log(values)    }    return (        <div>            <h1>                Login            </h1>            <LoginReduxForm onSubmit={handleSubmit}/>        </div>    );};
