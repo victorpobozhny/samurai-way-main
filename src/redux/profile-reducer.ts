@@ -36,15 +36,12 @@ let initialState = {
 
 const profileReducer = (state: ProfileReducer = initialState, action: ProfileActionsType): ProfileReducer => {
     switch (action.type) {
-
-
         case "PROFILE/SET-STATUS":
             return {...state, status: action.status}
         case "SET-USER-PROFILE":
             return {
                 ...state, profile: action.payload.profile
             }
-
         case "ADD-POST":
             const newPost = {
                 id: state.postsData.length + 1,
