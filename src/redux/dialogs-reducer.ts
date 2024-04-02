@@ -7,11 +7,9 @@ export type ActionType = DialogsActionsType | ProfileActionsType
 type DialogsReducer = {
     messagesData: Array<MessagePropsType>
     dialogsData: Array<DialogItemPropsType>
-    newMessage: string
 }
 type AddMessageACType = ReturnType<typeof addMessageAC>
-type UpdateNewMessageTextACType = ReturnType<typeof updateNewMessageTextAC>
-export type DialogsActionsType = AddMessageACType | UpdateNewMessageTextACType
+export type DialogsActionsType = AddMessageACType 
 
 
 let initialState = {
@@ -21,7 +19,6 @@ let initialState = {
         {message: 'Yo', id: 3},
         {message: 'Just do it', id: 4},
     ],
-    newMessage: '',
     dialogsData: [
         {
             name: 'Victor',
@@ -52,27 +49,21 @@ const dialogsReducer = (state: DialogsReducer = initialState, action: DialogsAct
         case 'ADD-MESSAGE':
             return {
                 ...state, messagesData: [...state.messagesData, {
-                    message: state.newMessage, id: state.messagesData.length + 1
-                }], newMessage: ''
+                    message: action.message, id: state.messagesData.length + 1
+                }]
             }
-        case 'UPDATE-NEW-MESSAGE-TEXT':
-            return {...state, newMessage: action.inputText}
         default:
             return state
     }
 }
 
 
-export const addMessageAC = () => {
+export const addMessageAC = (message: string) => {
     return {
-        type: 'ADD-MESSAGE'
+        type: 'ADD-MESSAGE',
+        message
     } as const
 }
-export const updateNewMessageTextAC = (text: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        inputText: text
-    } as const
-}
+
 
 export default dialogsReducer;

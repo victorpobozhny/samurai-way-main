@@ -1,8 +1,7 @@
-import React from 'react'
-import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer'
+import { connect } from "react-redux";
+import { addPostAC } from '../../../redux/profile-reducer';
+import store, { AppRootStateType } from "../../../redux/redux-store";
 import MyPosts from "./MyPosts";
-import {connect} from "react-redux";
-import store, {AppRootStateType} from "../../../redux/redux-store";
 //задача контейнерной компоненты - быть оберткой вокруг презентационной компоненты и общаться с redux и store
 // то есть презентационная компонента - просто рисует и вызыввает колбэки, иногда передавая наверх что-то по мелочи
 //и понятия не имеет ни о чем другом
@@ -11,17 +10,13 @@ import store, {AppRootStateType} from "../../../redux/redux-store";
 const mapStateToProps = (state: AppRootStateType) => {
     return {
         postsData: state.profilePage.postsData,
-        newPostText: state.profilePage.newPostText
     }
 }
 
 const mapDispatchToProps = () => {
     return {
-        updateNewPostText: (text: string) => {
-            store.dispatch(updateNewPostTextAC(text))
-        },
-        addPost: () => {
-            store.dispatch(addPostAC())
+        addPost: (newPostText: string) => {
+            store.dispatch(addPostAC(newPostText))
         }
     }
 }

@@ -1,19 +1,16 @@
-import {PostType} from "../components/Profile/MyPosts/MyPosts";
-import {Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import { Dispatch } from "redux";
+import { profileAPI } from "../api/api";
+import { PostType } from "../components/Profile/MyPosts/MyPosts";
 
 
 type AddPostACType = ReturnType<typeof addPostAC>
-type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
 export type ProfileActionsType =
     AddPostACType
-    | UpdateNewPostTextACType
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setProfileStatus>
 
 type ProfileReducer = {
     postsData: Array<PostType>
-    newPostText: string
     profile: ProfileType
     status: string
 }
@@ -29,7 +26,6 @@ let initialState = {
         {id: 2, text: 'How are you?', author: 'Audrey Horne', likesCount: 12},
         {id: 3, text: 'The weather is good today, isn\'t is?', author: 'Audrey Horne', likesCount: 5},
     ],
-    newPostText: 'it-kamasutra',
     profile: {} as ProfileType,
     status: ''
 }
@@ -45,28 +41,20 @@ const profileReducer = (state: ProfileReducer = initialState, action: ProfileAct
         case "ADD-POST":
             const newPost = {
                 id: state.postsData.length + 1,
-                text: state.newPostText,
+                text: action.newPostText,
                 author: 'Audrey Horne', likesCount: 0
             }
-            return {...state, postsData: [newPost, ...state.postsData], newPostText: ''}
-
-        case "UPDATE-NEW-POST-TEXT":
-            return {...state, newPostText: action.inputText}
+            return {...state, postsData: [newPost, ...state.postsData]}
         default:
             return state
     }
 }
 
 
-export const addPostAC = () => {
+export const addPostAC = (newPostText: string) => {
     return {
-        type: "ADD-POST"
-    } as const
-}
-export const updateNewPostTextAC = (text: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        inputText: text
+        type: "ADD-POST",
+        newPostText
     } as const
 }
 
