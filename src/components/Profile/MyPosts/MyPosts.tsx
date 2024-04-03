@@ -1,7 +1,9 @@
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { maxLengthCreator, required } from '../../../utils/validators/validators';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
+import FormControl from '../../common/FormControl/FormControl';
 
 export type MyPostsPropsType = {
     postsData: PostType[]
@@ -37,12 +39,20 @@ const MyPosts = (props: MyPostsPropsType) => {
 export type AddPostForm = {
     newPostText: string
 }
+
+const maxLength10 = maxLengthCreator(10)
+
 export const AddPostForm: React.FC<InjectedFormProps<AddPostForm>> = (props) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.newPost}>
                 <div>
-                    <Field placeholder={'Write something'} component='textarea' name='newPostText' />
+                    <Field placeholder={'Write something'}
+                        component={FormControl}
+                        name='newPostText'
+                        tagName={'textarea'}
+                        validate={[required, maxLength10]} />
                 </div>
                 <div>
                     <button>new post</button>
