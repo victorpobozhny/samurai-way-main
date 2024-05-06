@@ -1,9 +1,9 @@
 import React from 'react';
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { addMessageAC } from '../../redux/dialogs-reducer';
-import store, { AppRootStateType } from "../../redux/redux-store";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {addMessageAC} from '../../redux/dialogs-reducer';
+import store, {AppRootStateType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {AuthResponse} from "../redux/auth-reducer";
+import {AuthResponse, LoginPropsType} from "../redux/auth-reducer";
 
 const instance = axios.create({baseURL: `https://social-network.samuraijs.com/api/1.0`, withCredentials: true})
 
@@ -19,6 +19,12 @@ export const usersAPI = {
 export const authAPI = {
     me() {
         return instance.get<AuthResponse>('/auth/me',)
+    },
+    login(data: LoginPropsType) {
+        return instance.post<AuthResponse<{userId: number}>>('/auth/login', {data})
+    },
+    logout() {
+        return instance.delete('/auth/login')
     }
 }
 

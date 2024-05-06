@@ -7,9 +7,9 @@ type FormControlProps = WrappedFieldProps & {
 }
 
 const FormControl: FC<FormControlProps> = ({ input, meta, tagName, ...props }) => {
-    const hasError = meta.touched && meta.error;
-    const Tag = tagName;
 
+    const hasError = meta.touched && meta.error ;
+    const Tag = tagName;
 
     return (
         <>
